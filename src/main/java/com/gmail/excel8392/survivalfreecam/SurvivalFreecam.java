@@ -84,8 +84,9 @@ public class SurvivalFreecam extends JavaPlugin implements CommandExecutor, List
                 field.set(packet, list);
                 entityPlayer.playerConnection.sendPacket(packet);
                 entityPlayer.playerConnection.sendPacket(new PacketPlayOutGameStateChange(new PacketPlayOutGameStateChange.a(3), 3f));
-            } catch (NoSuchFieldException | IllegalAccessException | ClassNotFoundException | NoSuchMethodException | InvocationTargetException | InstantiationException e) {
-                e.printStackTrace();
+            } catch (NoSuchFieldException | IllegalAccessException | ClassNotFoundException | NoSuchMethodException | InvocationTargetException | InstantiationException exception) {
+                exception.printStackTrace();
+                return false;
             }
             FreecamPlaceholder freecamPlaceholder = new FreecamPlaceholder(player);
             for (Entity entity : player.getLocation().getWorld().getNearbyEntities(player.getLocation(), 30, 30, 30, (entity) -> {
