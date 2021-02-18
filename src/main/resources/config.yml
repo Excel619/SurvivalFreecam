@@ -1,0 +1,2 @@
+# Defines how far a player in freecam can go from their body
+max-distance-from-npc: 30
