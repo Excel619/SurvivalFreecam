@@ -48,7 +48,7 @@ public class FreecamPlaceholder {
         player.setFireTicks(0);
         this.inventory = Bukkit.createInventory(null, InventoryType.PLAYER);
         this.inventory.setContents(player.getInventory().getContents());
-        this.location = new Location(player.getLocation().getWorld(), player.getLocation().getX(), player.getLocation().getBlockY(), player.getLocation().getZ());
+        this.location = new Location(player.getLocation().getWorld(), player.getLocation().getX(), player.getLocation().getBlockY(), player.getLocation().getZ(), player.getLocation().getYaw(), player.getLocation().getPitch());
         this.player = player;
         this.npc = NPCLibAPI.createNPC(
                 this.location,
