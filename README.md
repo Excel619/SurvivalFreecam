@@ -1,4 +1,5 @@
 ### SurvivalFreecam
+# Bukkit Plugin
 
 - Allows players to enter a freecam-like mode on survival servers to look at things from a different angle.
 - When in /freecam mode, players cannot break blocks, interact with blocks, go through blocks, or travel more than 30 blocks from their body (configurable).
@@ -11,22 +12,22 @@ Upon entering freecam mode, the plugin sets the player's gamemode to spectator (
 Here is a snippet of that code if you want to try it out yourself:
 ```java
 player.setGameMode(GameMode.SPECTATOR);
-            EntityPlayer entityPlayer = ((CraftPlayer) player).getHandle();
-            PacketPlayOutPlayerInfo packet = new PacketPlayOutPlayerInfo(PacketPlayOutPlayerInfo.EnumPlayerInfoAction.UPDATE_GAME_MODE, entityPlayer);
-            try {
-                List<Object> list = new ArrayList<>();
-                Class clazz = Class.forName("net.minecraft.server.v1_16_R3.PacketPlayOutPlayerInfo$PlayerInfoData");
-                Constructor playerInfoDataConstructor = clazz.getDeclaredConstructor(PacketPlayOutPlayerInfo.class, GameProfile.class, int.class, EnumGamemode.class, IChatBaseComponent.class);
-                list.add(playerInfoDataConstructor.newInstance(packet, entityPlayer.getProfile(), 1, EnumGamemode.CREATIVE, entityPlayer.listName));
-                Field field = packet.getClass().getDeclaredField("b");
-                field.setAccessible(true);
-                field.set(packet, list);
-                entityPlayer.playerConnection.sendPacket(packet);
-                entityPlayer.playerConnection.sendPacket(new PacketPlayOutGameStateChange(new PacketPlayOutGameStateChange.a(3), 3f));
-            } catch (NoSuchFieldException | IllegalAccessException | ClassNotFoundException | NoSuchMethodException | InvocationTargetException | InstantiationException exception) {
-                exception.printStackTrace();
-                return false;
-            }
+EntityPlayer entityPlayer = ((CraftPlayer) player).getHandle();
+PacketPlayOutPlayerInfo packet = new PacketPlayOutPlayerInfo(PacketPlayOutPlayerInfo.EnumPlayerInfoAction.UPDATE_GAME_MODE, entityPlayer);
+try {
+    List<Object> list = new ArrayList<>();
+    Class clazz = Class.forName("net.minecraft.server.v1_16_R3.PacketPlayOutPlayerInfo$PlayerInfoData");
+    Constructor playerInfoDataConstructor = clazz.getDeclaredConstructor(PacketPlayOutPlayerInfo.class, GameProfile.class, int.class, EnumGamemode.class, IChatBaseComponent.class);
+    list.add(playerInfoDataConstructor.newInstance(packet, entityPlayer.getProfile(), 1, EnumGamemode.CREATIVE, entityPlayer.listName));
+    Field field = packet.getClass().getDeclaredField("b");
+    field.setAccessible(true);
+    field.set(packet, list);
+    entityPlayer.playerConnection.sendPacket(packet);
+    entityPlayer.playerConnection.sendPacket(new PacketPlayOutGameStateChange(new PacketPlayOutGameStateChange.a(3), 3f));
+} catch (NoSuchFieldException | IllegalAccessException | ClassNotFoundException | NoSuchMethodException | InvocationTargetException | InstantiationException exception) {
+    exception.printStackTrace();
+    return false;
+}
 ```
 
 Excel#8392 on discord
