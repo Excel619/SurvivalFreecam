@@ -27,7 +27,6 @@ try {
     entityPlayer.playerConnection.sendPacket(new PacketPlayOutGameStateChange(new PacketPlayOutGameStateChange.a(3), 3f));
 } catch (NoSuchFieldException | IllegalAccessException | ClassNotFoundException | NoSuchMethodException | InvocationTargetException | InstantiationException exception) {
     exception.printStackTrace();
-    return false;
 }
 ```
 
