@@ -1,5 +1,6 @@
 ### SurvivalFreecam
-# Bukkit Plugin
+
+Bukkit Plugin
 
 - Allows players to enter a freecam-like mode on survival servers to look at things from a different angle.
 - When in /freecam mode, players cannot break blocks, interact with blocks, go through blocks, or travel more than 30 blocks from their body (configurable).
